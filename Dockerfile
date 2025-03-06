@@ -11,11 +11,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Configurar el directorio de trabajo
 WORKDIR /var/www/html
 
-# Copiar el resto del proyecto (esto incluye el archivo artisan)
-COPY . .
+# Copiar todo el contenido de laravel_hosting al contenedor
+COPY laravel_hosting/ /var/www/html/
 
 # Copiar primero composer.json y composer.lock para aprovechar la caché de Docker
-COPY laravel_hosting/composer.json laravel_hosting/composer.lock ./
+COPY laravel_hosting/composer.json laravel_hosting/composer.lock /var/www/html/
 
 # Instalar dependencias de Laravel
 RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
