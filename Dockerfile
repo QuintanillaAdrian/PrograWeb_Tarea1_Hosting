@@ -15,14 +15,8 @@ WORKDIR /var/www/html
 COPY . /var/www/html
 
 
-# Copiar primero composer.json y composer.lock (para mejorar caché de Docker)
-COPY laravel_hosting/composer.json laravel_hosting/composer.lock ./
-
 # Instalar dependencias de Laravel
 RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
-
-# Ahora copiamos el resto del proyecto
-COPY . . 
 
 # Dar permisos a la carpeta de almacenamiento y cache
 RUN chmod -R 777 storage bootstrap/cache
