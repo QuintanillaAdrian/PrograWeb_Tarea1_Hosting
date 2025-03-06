@@ -19,7 +19,7 @@ COPY . /var/www/html
 COPY laravel_hosting/composer.json laravel_hosting/composer.lock ./
 
 # Instalar dependencias de Laravel
-RUN composer install --no-dev --optimize-autoloader
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
 
 # Ahora copiamos el resto del proyecto
 COPY . . 
