@@ -16,7 +16,7 @@ COPY . /var/www/html
 
 
 # Copiar primero composer.json y composer.lock (para mejorar caché de Docker)
-COPY composer.json composer.lock ./laravel_hosting/
+COPY laravel_hosting/composer.json laravel_hosting/composer.lock ./
 
 # Instalar dependencias de Laravel
 RUN composer install --no-dev --optimize-autoloader
