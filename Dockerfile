@@ -32,9 +32,6 @@ RUN echo '<VirtualHost *:80>' > /etc/apache2/sites-available/000-default.conf \
        && echo '    </Directory>' >> /etc/apache2/sites-available/000-default.conf \
        && echo '</VirtualHost>' >> /etc/apache2/sites-available/000-default.conf
 
-# Reiniciar Apache para aplicar la configuración
-RUN service apache2 restart
-
 # Exponer el puerto de Apache
 EXPOSE 80
 
