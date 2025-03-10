@@ -23,8 +23,6 @@ RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
 # Dar permisos a la carpeta de almacenamiento, cache y base de datos
 RUN chmod -R 777 storage bootstrap/cache
 
-RUN chmod -R 777 /var/www/html/database/database.sqlite
-RUN ls -l /var/www/html/database/
 # Configurar Apache para que sirva desde el directorio public de Laravel
 RUN echo '<VirtualHost *:80>' > /etc/apache2/sites-available/000-default.conf \
        && echo '    DocumentRoot /var/www/html/public' >> /etc/apache2/sites-available/000-default.conf \
@@ -42,4 +40,4 @@ RUN a2enmod rewrite
 EXPOSE 80
 
 # Comando de inicio
-CMD ["sh", "-c", "php artisan migrate --force && apache2-foreground"]
+CMD ["apache2-foreground"]
