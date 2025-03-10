@@ -23,15 +23,16 @@ RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
 # Dar permisos a la carpeta de almacenamiento y cache
 RUN chmod -R 777 storage bootstrap/cache
 
-# Configurar Apache para servir el proyecto desde public/
-RUN echo "<VirtualHost *:80>
-    DocumentRoot /var/www/html/public
-    <Directory /var/www/html/public>
-        AllowOverride All
-        Require all granted
-    </Directory>
-</VirtualHost>" > /etc/apache2/sites-available/000-default.conf
+# Configurar Apache para que sirva desde el directorio public de Laravel
+RUN echo '<VirtualHost *:80>' > /etc/apache2/sites-available/000-default.conf \
+       && echo '    DocumentRoot /var/www/html/public' >> /etc/apache2/sites-available/000-default.conf \
+       && echo '    <Directory /var/www/html/public>' >> /etc/apache2/sites-available/000-default.conf \
+       && echo '        AllowOverride All' >> /etc/apache2/sites-available/000-default.conf \
+       && echo '        Require all granted' >> /etc/apache2/sites-available/000-default.conf \
+       && echo '    </Directory>' >> /etc/apache2/sites-available/000-default.conf \
+       && echo '</VirtualHost>' >> /etc/apache2/sites-available/000-default.conf
 
+       
 # Habilitar mod_rewrite en Apache
 RUN a2enmod rewrite
 
