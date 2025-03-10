@@ -23,6 +23,8 @@ RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
 # Dar permisos a la carpeta de almacenamiento y cache
 RUN chmod -R 777 storage bootstrap/cache
 
+RUN chmod -R 777 /path/to/database/database.sqlite
+
 # Configurar Apache para que sirva desde el directorio public de Laravel
 RUN echo '<VirtualHost *:80>' > /etc/apache2/sites-available/000-default.conf \
        && echo '    DocumentRoot /var/www/html/public' >> /etc/apache2/sites-available/000-default.conf \
