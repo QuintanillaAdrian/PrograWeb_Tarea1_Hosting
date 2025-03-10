@@ -17,17 +17,17 @@ COPY laravel_hosting/ /var/www/html/
 # Copiar primero composer.json y composer.lock para aprovechar la caché de Docker
 COPY laravel_hosting/composer.json laravel_hosting/composer.lock /var/www/html/
 
-# Verificar que el archivo database.sqlite esté en el contenedor
-RUN ls -l /var/www/html/laravel_hosting/database/
-
-# Dar permisos al archivo de base de datos SQLite
-RUN chmod -R 777 /var/www/html/laravel_hosting/database/database.sqlite
-
 # Instalar dependencias de Laravel
 RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
 
 # Dar permisos a la carpeta de almacenamiento, cache y base de datos
 RUN chmod -R 777 storage bootstrap/cache
+
+# Verificar que el archivo database.sqlite esté en el contenedor
+RUN ls -l /var/www/html/laravel_hosting/database/
+
+# Dar permisos al archivo de base de datos SQLite
+RUN chmod -R 777 /var/www/html/laravel_hosting/database/database.sqlite
 
 # Configurar Apache para que sirva desde el directorio public de Laravel
 RUN echo '<VirtualHost *:80>' > /etc/apache2/sites-available/000-default.conf \
