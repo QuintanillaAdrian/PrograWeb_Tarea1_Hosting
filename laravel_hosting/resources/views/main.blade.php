@@ -11,9 +11,9 @@
     <h1><a href="/main"> Main Page </a></h1>
     <nav>
         <ul>
-            <li><a href="/books"></a></li>
-            <li><a href="/publishers"></a></li>
-            <li><a href="/authors"></a></li>
+            <li><a href="/books">Books</a></li>
+            <li><a href="/publishers">Publishers</a></li>
+            <li><a href="/authors">Authors</a></li>
         </ul>
     </nav>
 </body>
