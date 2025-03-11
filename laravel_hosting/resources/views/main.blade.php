@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1><a href="/main"> Main Page </a></h1>
+    <h1><a href="/"> Main Page </a></h1>
     <nav>
         <ul>
             <li><a href="/books">Books</a></li>
